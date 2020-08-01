@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbookWT
 {
     [TestFixture]
-    public class UntitledTestCase
+    public class UntitledTest
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -21,7 +21,7 @@ namespace addressbookWT
         public void SetupTest()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/";
+            baseURL = "http://localhost/addressbook";
             verificationErrors = new StringBuilder();
         }
 
@@ -40,7 +40,7 @@ namespace addressbookWT
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void TheUntitledTest()
         {
             driver.Navigate().GoToUrl(baseURL);
             driver.FindElement(By.Name("user")).Click();
@@ -53,17 +53,16 @@ namespace addressbookWT
             driver.FindElement(By.Name("new")).Click();
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys("T");
+            driver.FindElement(By.Name("group_name")).SendKeys("kasin");
             driver.FindElement(By.Name("group_header")).Click();
             driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("Y");
+            driver.FindElement(By.Name("group_header")).SendKeys("T1");
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys("E");
+            driver.FindElement(By.Name("group_footer")).SendKeys("T2");
             driver.FindElement(By.Name("submit")).Click();
             driver.FindElement(By.LinkText("group page")).Click();
             driver.FindElement(By.LinkText("Logout")).Click();
-            driver.FindElement(By.Id("LoginForm")).Click();
         }
         private bool IsElementPresent(By by)
         {
