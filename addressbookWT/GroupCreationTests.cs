@@ -7,10 +7,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace addressbookWT
+namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UntitledTest
+    public class GroupCreationTests
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -21,7 +21,7 @@ namespace addressbookWT
         public void SetupTest()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook";
+            baseURL = "http://localhost";
             verificationErrors = new StringBuilder();
         }
 
@@ -40,9 +40,9 @@ namespace addressbookWT
         }
 
         [Test]
-        public void TheUntitledTest()
+        public void GroupCreationTest()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
