@@ -68,7 +68,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AccountData.cs" />
+    <Compile Include="AccountDataContact.cs" />
+    <Compile Include="AddressbookContactTests.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="ContactGroup.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="GroupData.cs" />
     <Compile Include="UnitTest1.cs" />

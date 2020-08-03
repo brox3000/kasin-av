@@ -4,9 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace addressbookWT
 {
     [TestClass]
-    public class UnitTest1
+
+    public class Untitled
     {
         [TestMethod]
+
         public void TestMethodSquaer()
         {
             Square s1 = new Square(5);
