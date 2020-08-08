@@ -67,22 +67,32 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AccountData.cs" />
+    <Compile Include="model\AccountData.cs" />
     <Compile Include="AccountDataContact.cs" />
     <Compile Include="AddressbookContactTests.cs" />
-    <Compile Include="Circle.cs" />
+    <Compile Include="appmanager\ApplicationManager.cs" />
+    <Compile Include="delete\Circle.cs" />
     <Compile Include="ContactGroup.cs" />
-    <Compile Include="Figure.cs" />
-    <Compile Include="GroupData.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="delete\Figure.cs" />
+    <Compile Include="model\GroupData.cs" />
+    <Compile Include="appmanager\GroupHelper.cs" />
+    <Compile Include="tests\GroupRemovalTest.cs" />
+    <Compile Include="appmanager\HavigationHelper.cs" />
+    <Compile Include="appmanager\HelperBase.cs" />
+    <Compile Include="appmanager\LoginHelper.cs" />
+    <Compile Include="tests\TestBase.cs" />
+    <Compile Include="delete\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GroupCreationTests.cs" />
-    <Compile Include="Square.cs" />
+    <Compile Include="tests\GroupCreationTests.cs" />
+    <Compile Include="delete\Square.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="packages.config" />
+    <None Include="diagram\ClassDiagram1.cd" />
+    <None Include="diagram\ClassDiagram2.cd" />
+    <None Include="diagram\ClassDiagram3.cd" />
+    <None Include="delete\packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
