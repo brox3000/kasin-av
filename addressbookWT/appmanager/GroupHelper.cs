@@ -21,16 +21,27 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToGroupsPage();
             InitGroupCreation();
-            FillGroupFrom(group);
+            FillGroupFrom(group); // Заполняем форму
             SubmitGroupCreation();
-            ReturnToGroupsPage();
+            ReturnToGroupsPage(); // Возвращание на список групп
             return this;
         }
 
-        public GroupHelper Remove(int v)
+        public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(1);
+            SelectGroup(p);
+            InitGroupModification(); // Egit Group
+            FillGroupFrom(newData); // Заполняем форму
+            SubmitGroupModification(); // Update Group
+            ReturnToGroupsPage(); // Возвращание на список групп
+            return this;
+        }
+
+        public GroupHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(p);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -74,6 +85,18 @@ namespace WebAddressbookTests
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
     }

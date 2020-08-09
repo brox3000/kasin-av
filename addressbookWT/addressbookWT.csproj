@@ -67,7 +67,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="GroupModificationTests.cs" />
+    <Compile Include="tests\GroupModificationTests.cs" />
     <Compile Include="model\AccountData.cs" />
     <Compile Include="AccountDataContact.cs" />
     <Compile Include="AddressbookContactTests.cs" />
