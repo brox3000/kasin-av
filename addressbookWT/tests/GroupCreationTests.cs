@@ -18,7 +18,7 @@ namespace WebAddressbookTests
             group.Header = "T1";
             group.Footer = "T2";
 
-            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs строка №19
+           // app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs строка №20 (Временно пока переношу Код)
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs строка №19
+            // app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs строка №20 (Временно пока переношу Код)
         }
     }
 }

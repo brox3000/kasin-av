@@ -20,7 +20,7 @@ namespace WebAddressbookTests.tests
             newData.Header = "T1_edit";
             newData.Footer = "T2_edit";
 
-            app.Groups.Modify(1, newData);
+            //   app.Groups.Modify(1, newData); //(Временно пока переношу Код)
         }
     }
 }
