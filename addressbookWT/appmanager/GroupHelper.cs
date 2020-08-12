@@ -12,14 +12,16 @@ namespace WebAddressbookTests
     public class GroupHelper : HelperBase
     {
 
-        public GroupHelper(ApplicationManager manager)
-            : base(manager)
+        public GroupHelper(ApplicationManager manager)   
+           : base(manager)                               
+
         {
         }
 
         public GroupHelper Create(GroupData group)  // Метод называется с Большой Буквы
         {
             manager.Navigator.GoToGroupsPage();
+
             InitGroupCreation();
             FillGroupFrom(group); // Заполняем форму
             SubmitGroupCreation();
@@ -30,6 +32,7 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+
             SelectGroup(p);
             InitGroupModification(); // Egit Group
             FillGroupFrom(newData); // Заполняем форму

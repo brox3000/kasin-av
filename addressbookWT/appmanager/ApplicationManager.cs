@@ -17,15 +17,17 @@ namespace WebAddressbookTests
         protected LoginHelper loginHelper;
         protected HavigationHelper navigator;
         protected GroupHelper groupHelper;
+        protected ContactHelper contactHelper;
 
         public ApplicationManager()
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
 
-            loginHelper = new LoginHelper(this);
-            navigator = new HavigationHelper(this, baseURL);
-            groupHelper = new GroupHelper(this);
+            loginHelper = new LoginHelper(this);             
+            navigator = new HavigationHelper(this, baseURL); 
+            groupHelper = new GroupHelper(this);             
+            contactHelper = new ContactHelper(this);
         }
 
         public IWebDriver Driver
@@ -70,6 +72,14 @@ namespace WebAddressbookTests
             get
             {
                 return groupHelper;
+            }
+        }
+
+        public ContactHelper Contact
+        {
+            get
+            {
+                return contactHelper;
             }
         }
     }

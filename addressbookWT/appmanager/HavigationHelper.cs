@@ -13,8 +13,9 @@ namespace WebAddressbookTests
     {
         private string baseURL;
 
-        public HavigationHelper(ApplicationManager manager, string baseURL)
-            : base(manager)
+        public HavigationHelper(ApplicationManager manager, string baseURL) 
+            : base(manager)                                                 
+
         {
             this.baseURL = baseURL;
         }
