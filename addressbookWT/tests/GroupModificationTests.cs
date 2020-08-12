@@ -16,11 +16,11 @@ namespace WebAddressbookTests.tests
 
         public void GroupModificationTest()
         {
-            GroupData newData = new GroupData("kasin_edit");
+            GroupData newData = new GroupData("kasin_edit1");
             newData.Header = "T1_edit";
             newData.Footer = "T2_edit";
 
-            //   app.Groups.Modify(1, newData); //(Временно пока переношу Код)
+            app.Groups.Modify(1, newData);
         }
     }
 }
