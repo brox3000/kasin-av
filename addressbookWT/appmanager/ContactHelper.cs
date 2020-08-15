@@ -99,24 +99,41 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("email3")).Clear();
             driver.FindElement(By.Name("email3")).SendKeys(contact.Email3);
 
-            // Data // Срабатывает контроль на пустоту
-            //driver.FindElement(By.Name("bday")).Click();
-            //new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
+            // Data 
+            driver.FindElement(By.Name("byear")).Clear();
+            driver.FindElement(By.Name("byear")).SendKeys(contact.Byear);
 
-            //driver.FindElement(By.Name("bmonth")).Click();
-            //new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
+            driver.FindElement(By.Name("ayear")).Clear();
+            driver.FindElement(By.Name("ayear")).SendKeys(contact.Ayear);
 
-            //driver.FindElement(By.Name("byear")).Clear();
-            //driver.FindElement(By.Name("byear")).SendKeys(contact.Byear);
+            // 1         
+            driver.FindElement(By.Name("bday")).Click();
 
-            //driver.FindElement(By.Name("aday")).Click();
-            //new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Aday);
+            if (string.IsNullOrEmpty(contact.Bday)) // У contact нет Bday или Bday равен пусто
+                return this;
+            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
 
-            //driver.FindElement(By.Name("amonth")).Click();
-            //new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Amonth);
+            // 2
+            driver.FindElement(By.Name("aday")).Click();
 
-            //driver.FindElement(By.Name("ayear")).Clear();
-            //driver.FindElement(By.Name("ayear")).SendKeys(contact.Ayear);
+            if (string.IsNullOrEmpty(contact.Aday)) // У contact нет Bday или Bday равен пусто
+                return this;
+            new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Aday);
+
+            // 3
+            driver.FindElement(By.Name("bmonth")).Click();
+
+            if (string.IsNullOrEmpty(contact.Bmonth)) // У contact нет Bday или Bday равен пусто
+                return this;
+            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
+
+            // 4
+            driver.FindElement(By.Name("amonth")).Click();
+
+            if (string.IsNullOrEmpty(contact.Amonth)) // У contact нет Bday или Bday равен пусто
+                return this;
+            new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Amonth);
+
 
             // Secondary
             driver.FindElement(By.Name("homepage")).Clear();
