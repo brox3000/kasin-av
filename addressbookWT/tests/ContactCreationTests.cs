@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         [Test]
         public void ContactCreationTest()
@@ -26,12 +26,12 @@ namespace WebAddressbookTests
             group.Email2 = "";
             group.Email3 = "";
             group.Homepage = "";
-            group.Byear = "1990";
-            group.Ayear = "2020";
-            group.Bday = "2";
-            group.Aday = "7";
-            group.Bmonth = "March";
-            group.Amonth = "May";
+            //group.Byear = "1990";
+            //group.Ayear = "2020";
+            //group.Bday = "2";
+            //group.Aday = "7";
+            //group.Bmonth = "March";
+            //group.Amonth = "May";
             group.Address2 = "";
             group.Phone2 = "";
             group.Notes = "";
@@ -56,12 +56,12 @@ namespace WebAddressbookTests
             group.Email2 = "";
             group.Email3 = "";
             group.Homepage = "";
-            group.Byear = "";
-            group.Ayear = "";
-            group.Bday = "";
-            group.Aday = "";
-            group.Bmonth = "";
-            group.Amonth = "";
+            //group.Byear = "";
+            //group.Ayear = "";
+            //group.Bday = "";
+            //group.Aday = "";
+            //group.Bmonth = "";
+            //group.Amonth = "";
             group.Address2 = "";
             group.Phone2 = "";
             group.Notes = "";

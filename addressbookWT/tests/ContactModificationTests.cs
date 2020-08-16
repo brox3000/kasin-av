@@ -10,16 +10,16 @@ namespace WebAddressbookTests.tests
 {
     [TestFixture]
 
-    public class ContactModificationTests : TestBase
+    public class ContactModificationTests : AuthTestBase
     {
         [Test]
 
         public void ContactModificationTest()
         {
-            ContactGroup NewData = new ContactGroup("Aleksey_edit5", "Kasin_edit5");
-            NewData.Mobile = "+7(800)10";
-            NewData.Email = "mail@mail.ru";
-            NewData.Address = "Moscow";
+            ContactGroup NewData = new ContactGroup("Aleksey_edit2", "Kasin_edit2");
+            NewData.Mobile = "+7(800)12";
+            NewData.Email = "mail2@mail.ru";
+            NewData.Address = "Moscow2";
 
             app.Contact.Modify(1, NewData);
         }

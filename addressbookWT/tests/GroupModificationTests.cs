@@ -10,15 +10,15 @@ namespace WebAddressbookTests.tests
 {
     [TestFixture]
 
-    public class GroupModificationTests : TestBase
+    public class GroupModificationTests : AuthTestBase
     {
         [Test]
 
         public void GroupModificationTest()
         {
-            GroupData newData = new GroupData("kasin_edit1");
-            newData.Header = "T1_edit";
-            newData.Footer = "T2_edit";
+            GroupData newData = new GroupData("kasin_edit3");
+            newData.Header = null;
+            newData.Footer = null;
 
             app.Groups.Modify(1, newData);
         }
