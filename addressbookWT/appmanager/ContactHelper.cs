@@ -21,7 +21,6 @@ namespace WebAddressbookTests
 
         private bool acceptNextAlert;
 
-
         public ContactHelper Create(ContactGroup contact) // Метод называется с Большой Буквы
         {
             AddNewContact();
@@ -153,6 +152,5 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
-
     }
 }
