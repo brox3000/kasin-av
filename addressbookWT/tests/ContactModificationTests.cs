@@ -17,7 +17,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            if (!IsElementPresent(By.Name("entry")))
+            //if (!IsElementPresent(By.Name("entry")))
+            if (!app.Contact.IsElementPresent(app.Contact.IsContactPresent))
             {
 
                 ContactGroup contact = new ContactGroup("Aleksey_3.0", "Kasin_3.0");
@@ -44,19 +45,6 @@ namespace WebAddressbookTests
                 NewData.Address = "Moscow3";
 
                 app.Contact.Modify(1, NewData);
-            }
-        }
-
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                app.Driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
             }
         }
     }

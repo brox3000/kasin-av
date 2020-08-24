@@ -13,6 +13,8 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
+
+        public By IsContactPresent = By.Name("entry");
         // Конструктор
         public ContactHelper(ApplicationManager manager)
            : base(manager)

@@ -3,6 +3,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
+
 
 namespace WebAddressbookTests
 {
@@ -14,21 +16,57 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("kasin");
-            group.Header = "T1";
-            group.Footer = "T2";
+           GroupData group = new GroupData("kasin");
+           group.Header = "T1";
+           group.Footer = "T2";
+
+           List<GroupData> oldGroups = app.Groups.GetGroupList();
 
            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+           
+           List<GroupData> newGroups = app.Groups.GetGroupList();
+           oldGroups.Add(group);
+           oldGroups.Sort();
+           newGroups.Sort();
+           Assert.AreEqual(oldGroups, newGroups); 
         }
 
         [Test]
+
         public void EmptyGroupCreationTest()
         {
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = new GroupData("a'a");
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
