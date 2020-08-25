@@ -32,6 +32,21 @@ namespace WebAddressbookTests
             return this;
         }
 
+        // 4.0
+        //public List<ContactGroup> GetContactList()
+        //{
+        //    List<ContactGroup> groups = new List<ContactGroup>();
+        //    manager.Navigator.GoToGroupsPage();
+        //    ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+        //    foreach (IWebElement element in elements)
+        //    {
+        //        groups.Add(new ContactGroup(element.Text));
+
+        //    }
+        //    return groups;
+        //}
+        //
+
         public ContactHelper Modify(int v, ContactGroup NewData)
         {
             SecectContact(v);

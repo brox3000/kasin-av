@@ -25,12 +25,13 @@ namespace WebAddressbookTests
                 contact.Address = "new_Moscow";
 
                 app.Contact.Create(contact);
-                app.Contact.Remove(1);
+                //app.Contact.Remove(1);
             }
-            else
-            {
-                app.Contact.Remove(1);
-            }
+            //else
+            //{
+            app.Navigator.GoToHomePage();
+            app.Contact.Remove(1);
+            //}
         }
     }
 }

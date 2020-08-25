@@ -12,6 +12,7 @@ namespace WebAddressbookTests
     public class GroupHelper : HelperBase
     {
 
+        public By IsGroupPresent = By.ClassName("group");
         public GroupHelper(ApplicationManager manager)   
            : base(manager)                               
 
@@ -29,6 +30,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+        // 4.0
         public List<GroupData> GetGroupList()
         {
             List<GroupData> groups = new List<GroupData>();
@@ -41,6 +43,7 @@ namespace WebAddressbookTests
             }
             return groups;
         }
+        //
 
         public GroupHelper Modify(int p, GroupData newData)
         {
@@ -112,7 +115,5 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
-
-
     }
 }

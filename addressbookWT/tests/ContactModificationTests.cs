@@ -28,15 +28,16 @@ namespace WebAddressbookTests
 
                 app.Contact.Create(contact);
 
-                ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
-                NewData.Mobile = "+7(800)13";
-                NewData.Email = "mail3@mail.ru";
-                NewData.Address = "Moscow3";
+                //Delete
+                //ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
+                //NewData.Mobile = "+7(800)13";
+                //NewData.Email = "mail3@mail.ru";
+                //NewData.Address = "Moscow3";
 
-                app.Contact.Modify(1, NewData);
+                //app.Contact.Modify(1, NewData);
             }
-            else
-            {
+            //else
+            //{
                 app.Navigator.GoToHomePage();
 
                 ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
@@ -45,7 +46,7 @@ namespace WebAddressbookTests
                 NewData.Address = "Moscow3";
 
                 app.Contact.Modify(1, NewData);
-            }
+            //}
         }
     }
 }

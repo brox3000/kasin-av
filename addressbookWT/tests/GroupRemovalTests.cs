@@ -5,25 +5,59 @@ using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
 
+
+
 namespace WebAddressbookTests
 {
     [TestFixture]
 
     public class GroupRemovalTests : AuthTestBase
     {
-       
-        [Test]
 
+        [Test]
         public void GroupRemovalTest()
         {
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            app.Navigator.GoToGroupsPage();
 
-            app.Groups.Remove(0);
+            if (!app.Groups.IsElementPresent(app.Groups.IsGroupPresent))
+            {
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.RemoveAt(0);
-            Assert.AreEqual(oldGroups, newGroups);
-         }
+                GroupData group = new GroupData("kasin_modif");
+                group.Header = "A1_modif";
+                group.Footer = "A2_modif";
+                app.Groups.Create(group);
+
+            }
+
+            app.Groups.Remove(1);
+
+        }
     }
 }
+
+
+
+
+//namespace WebAddressbookTests
+//{
+//    [TestFixture]
+
+//    public class GroupRemovalTests : AuthTestBase
+//    {
+
+//        [Test]
+
+//        public void GroupRemovalTest()
+//        {
+
+//            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+//            app.Groups.Remove(0);
+
+//            List<GroupData> newGroups = app.Groups.GetGroupList();
+//            oldGroups.RemoveAt(0);
+//            Assert.AreEqual(oldGroups, newGroups);
+//         }
+//    }
+//}

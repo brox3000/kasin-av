@@ -19,16 +19,18 @@ namespace WebAddressbookTests
            GroupData group = new GroupData("kasin");
            group.Header = "T1";
            group.Footer = "T2";
-
-           List<GroupData> oldGroups = app.Groups.GetGroupList();
+            
+           // 4.0
+           //List<GroupData> oldGroups = app.Groups.GetGroupList();
 
            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
            
-           List<GroupData> newGroups = app.Groups.GetGroupList();
-           oldGroups.Add(group);
-           oldGroups.Sort();
-           newGroups.Sort();
-           Assert.AreEqual(oldGroups, newGroups); 
+           //List<GroupData> newGroups = app.Groups.GetGroupList();
+           //oldGroups.Add(group);
+           //oldGroups.Sort();
+           //newGroups.Sort();
+           //Assert.AreEqual(oldGroups, newGroups); 
+           // 4.0 
         }
 
         [Test]
@@ -39,15 +41,17 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            // 4.0
+            //List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+            //app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
+            //List<GroupData> newGroups = app.Groups.GetGroupList();
+            //oldGroups.Add(group);
+            //oldGroups.Sort();
+            //newGroups.Sort();
+            //Assert.AreEqual(oldGroups, newGroups);
+            //
         }
 
         [Test]
@@ -58,15 +62,17 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            // 4.0
+            //List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+            //app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
+            //List<GroupData> newGroups = app.Groups.GetGroupList();
+            //oldGroups.Add(group);
+            //oldGroups.Sort();
+            //newGroups.Sort();
+            //Assert.AreEqual(oldGroups, newGroups);
+            //
         }
     }
 }
