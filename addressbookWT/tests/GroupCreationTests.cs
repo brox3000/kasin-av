@@ -19,18 +19,20 @@ namespace WebAddressbookTests
            GroupData group = new GroupData("kasin");
            group.Header = "T1";
            group.Footer = "T2";
-            
-           // 4.0
-           //List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-           app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
-           
-           //List<GroupData> newGroups = app.Groups.GetGroupList();
-           //oldGroups.Add(group);
-           //oldGroups.Sort();
-           //newGroups.Sort();
-           //Assert.AreEqual(oldGroups, newGroups); 
-           // 4.0 
+            // 4.0
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+
+            Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+            // 4.0 
         }
 
         [Test]
@@ -42,15 +44,17 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             // 4.0
-            //List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            //app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
-            //List<GroupData> newGroups = app.Groups.GetGroupList();
-            //oldGroups.Add(group);
-            //oldGroups.Sort();
-            //newGroups.Sort();
-            //Assert.AreEqual(oldGroups, newGroups);
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
             //
         }
 
@@ -63,15 +67,17 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             // 4.0
-            //List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            //app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+            app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
-            //List<GroupData> newGroups = app.Groups.GetGroupList();
-            //oldGroups.Add(group);
-            //oldGroups.Sort();
-            //newGroups.Sort();
-            //Assert.AreEqual(oldGroups, newGroups);
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
             //
         }
     }

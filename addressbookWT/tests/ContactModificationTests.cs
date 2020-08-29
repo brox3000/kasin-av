@@ -17,7 +17,6 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            //if (!IsElementPresent(By.Name("entry")))
             if (!app.Contact.IsElementPresent(app.Contact.IsContactPresent))
             {
 
@@ -28,16 +27,7 @@ namespace WebAddressbookTests
 
                 app.Contact.Create(contact);
 
-                //Delete
-                //ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
-                //NewData.Mobile = "+7(800)13";
-                //NewData.Email = "mail3@mail.ru";
-                //NewData.Address = "Moscow3";
-
-                //app.Contact.Modify(1, NewData);
             }
-            //else
-            //{
                 app.Navigator.GoToHomePage();
 
                 ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
@@ -46,7 +36,6 @@ namespace WebAddressbookTests
                 NewData.Address = "Moscow3";
 
                 app.Contact.Modify(1, NewData);
-            //}
         }
     }
 }

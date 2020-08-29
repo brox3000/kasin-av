@@ -15,7 +15,7 @@ namespace WebAddressbookTests
 
         public void ContactRemovalTest()
         {
-            //if (!IsElementPresent(By.Name("entry")))
+
             if (!app.Contact.IsElementPresent(app.Contact.IsContactPresent))
             {
 
@@ -25,13 +25,12 @@ namespace WebAddressbookTests
                 contact.Address = "new_Moscow";
 
                 app.Contact.Create(contact);
-                //app.Contact.Remove(1);
+
             }
-            //else
-            //{
+
             app.Navigator.GoToHomePage();
             app.Contact.Remove(1);
-            //}
+
         }
     }
 }

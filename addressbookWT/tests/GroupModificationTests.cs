@@ -7,8 +7,8 @@ using NUnit.Framework;
 
 
 
-
-namespace WebAddressbookTests
+ //4.0
+namespace WebAddressbookTests.tests
 {
     [TestFixture]
 
@@ -18,54 +18,31 @@ namespace WebAddressbookTests
 
         public void GroupModificationTest()
         {
-            app.Navigator.GoToGroupsPage();
+            GroupData newData = new GroupData("kasin_edit3");
+            newData.Header = null;
+            newData.Footer = null;
 
-            if (!app.Groups.IsElementPresent(app.Groups.IsGroupPresent))
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            GroupData oldData = oldGroups[0];
+
+            app.Groups.Modify(0, newData);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        
+
+            foreach (GroupData group in newGroups)
             {
-
-                GroupData group = new GroupData("kasin_modif");
-                group.Header = "A1_modif";
-                group.Footer = "A2_modif";
-                app.Groups.Create(group);
-
-
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Name, group.Name);
+                }
             }
-
-            GroupData newData = new GroupData("kasin_modifData");
-            newData.Header = "A1_modifData";
-            newData.Footer = "A2_modifData";
-
-            app.Groups.Modify(1, newData);
         }
     }
 }
-
-
-
-// 4.0
-//namespace WebAddressbookTests.tests
-//{
-//    [TestFixture]
-
-//    public class GroupModificationTests : AuthTestBase
-//    {
-//        [Test]
-
-//        public void GroupModificationTest()
-//        {
-//            GroupData newData = new GroupData("kasin_edit3");
-//            newData.Header = null;
-//            newData.Footer = null;
-
-//            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-//            app.Groups.Modify(0, newData);
-
-//            List<GroupData> newGroups = app.Groups.GetGroupList();
-//            oldGroups[0].Name = newData.Name;
-//            oldGroups.Sort();
-//            newGroups.Sort();
-//            Assert.AreEqual(oldGroups, newGroups);
-//        }
-//    }
-//}
