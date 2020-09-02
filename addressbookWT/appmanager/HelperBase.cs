@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
@@ -13,8 +14,8 @@ namespace WebAddressbookTests
     {
         protected IWebDriver driver;
         protected ApplicationManager manager;
-
-        public HelperBase(ApplicationManager manager) 
+        protected bool present;
+        public HelperBase(ApplicationManager manager)
         {
             this.manager = manager;
             driver = manager.Driver;
@@ -40,6 +41,15 @@ namespace WebAddressbookTests
             {
                 return false;
             }
+        }
+        public void TypeSelect(By locatorc, string textc)
+        {
+            if (textc != null)
+            {
+                new SelectElement(driver.FindElement(locatorc)).SelectByText(textc);
+            }
+
+
         }
     }
 }

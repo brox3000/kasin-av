@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 
 namespace WebAddressbookTests
@@ -29,7 +32,16 @@ namespace WebAddressbookTests
             }
 
             app.Navigator.GoToHomePage();
+
+            List<ContactGroup> oldContact = app.Contact.GetContactList();
+
             app.Contact.Remove(1);
+
+            List<ContactGroup> newContact = app.Contact.GetContactList();
+
+            oldContact.RemoveAt(0);
+
+            Assert.AreEqual(oldContact, newContact);
 
         }
     }

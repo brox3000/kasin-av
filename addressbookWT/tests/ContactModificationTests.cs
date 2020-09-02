@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework; 
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 
@@ -28,14 +28,24 @@ namespace WebAddressbookTests
                 app.Contact.Create(contact);
 
             }
-                app.Navigator.GoToHomePage();
+            app.Navigator.GoToHomePage();
 
-                ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
-                NewData.Mobile = "+7(800)13";
-                NewData.Email = "mail3@mail.ru";
-                NewData.Address = "Moscow3";
+            ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
+            NewData.Mobile = "+7(800)13";
+            NewData.Email = "mail3@mail.ru";
+            NewData.Address = "Moscow3";
 
-                app.Contact.Modify(1, NewData);
+            List<ContactGroup> oldContact = app.Contact.GetContactList();
+
+            app.Contact.ModifyContact(1, NewData);
+
+            List<ContactGroup> newContact = app.Contact.GetContactList();
+            oldContact[0].FirstName = NewData.FirstName;
+            oldContact[0].LastName = NewData.LastName;
+
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
     }
 }

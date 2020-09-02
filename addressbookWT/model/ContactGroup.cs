@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
+
+
 
 namespace WebAddressbookTests
 {
-    public class ContactGroup
+    public class ContactGroup : IEquatable<ContactGroup>, IComparable<ContactGroup>
     {
         private string firstname;
         private string lastname = "";
@@ -38,321 +43,97 @@ namespace WebAddressbookTests
             this.firstname = firstname;
             this.lastname = lastname;
         }
-
-        public ContactGroup(string amonth, string bmonth, string aday, string bday, string ayear, string byear, string notes, string phone2, string address2, string homepage, string email, string email2, string email3, string fax, string firstname, string middlename, string lastname, string nickname, string company, string title, string address,string home, string mobile, string work)
+		
+		// S4.0
+        public bool Equals(ContactGroup other)
         {
-            this.firstname = firstname;
-            this.lastname = lastname;
-            this.nickname = nickname;
-            this.middlename = middlename;
-            this.title = title;
-            this.company = company;
-            this.address = address;
-            this.home = home;
-            this.mobile = mobile;
-            this.work = work;
-            this.fax = fax;
-            this.email = email;
-            this.email2 = email2;
-            this.email3 = email3;
-            this.homepage = homepage;
-            this.byear = byear;
-            this.address2 = address2;
-            this.phone2 = phone2;
-            this.notes = notes;
-            this.ayear = ayear;
-            this.bday = bday;
-            this.aday = aday;
-            this.bmonth = bmonth;
-            this.amonth = amonth;
+
+            if (Object.ReferenceEquals(other.lastname, null) && (Object.ReferenceEquals(other.firstname, null)))
+            {
+                return false;
+            }
+
+            return lastname == other.lastname && firstname == other.firstname;
+ 
+        }
+        public override int GetHashCode()
+        {
+          return lastname.GetHashCode();
         }
 
-        public string Amonth
+        public override string ToString()
         {
-            get
-            {
-                return amonth;
-            }
-            set
-            {
-                amonth = value;
-            }
+           return lastname;
         }
 
-        public string Bmonth
+        public int CompareTo(ContactGroup other)
         {
-            get
-            {
-                return bmonth;
-            }
-            set
-            {
-                bmonth = value;
-            }
-        }
+          if (object.ReferenceEquals(other, null))
 
-        public string Aday
-        {
-            get
-            {
-                return aday;
-            }
-            set
-            {
-                aday = value;
-            }
-        }
+           {
+                return 1;
+           }
 
-        public string Bday
-        {
-            get
-            {
-                return bday;
-            }
-            set
-            {
-                bday = value;
-            }
-        }
+        
+         if ((lastname.CompareTo(other.lastname)) == 0)
 
-        public string FirstName
-        {
-            get
-            {
-                return firstname;
-            }
-            set
-            {
-                firstname = value;
-            }
-        }
+          {
+              return firstname.CompareTo(other.firstname);
+          }
 
-        public string LastName
-        {
-            get
-            {
-                return lastname;
-            }
-            set
-            {
-                lastname = value;
-            }
-        }
+            return (lastname.CompareTo(other.lastname));
 
-        public string NickName
-        {
-            get
-            {
-                return nickname;
-            }
-            set
-            {
-                nickname = value;
-            }
         }
+		// F4.0
+		
+        public string Amonth { get; set; }
 
-        public string MiddleName
-        {
-            get
-            {
-                return middlename;
-            }
-            set
-            {
-                middlename = value;
-            }
-        }
+        public string Bmonth { get; set; }
 
-        public string Company
-        {
-            get
-            {
-                return company;
-            }
-            set
-            {
-                company = value;
-            }
-        }
+        public string Aday { get; set; }
 
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                title = value;
-            }
-        }
+        public string Bday { get; set; }
 
-        public string Address
-        {
-            get
-            {
-                return address;
-            }
-            set
-            {
-                address = value;
-            }
-        }
+        public string FirstName { get; set; }
 
-        public string Home
-        {
-            get
-            {
-                return home;
-            }
-            set
-            {
-                home = value;
-            }
-        }
+        public string LastName { get; set; }
 
-        public string Mobile
-        {
-            get
-            {
-                return mobile;
-            }
-            set
-            {
-                mobile = value;
-            }
-        }
+        public string NickName { get; set; }
 
-        public string Work
-        {
-            get
-            {
-                return work;
-            }
-            set
-            {
-                work = value;
-            }
-        }
+        public string MiddleName { get; set; }
 
-        public string Fax
-        {
-            get
-            {
-                return fax;
-            }
-            set
-            {
-                fax = value;
-            }
-        }
+        public string Company { get; set; }
 
-        public string Email
-        {
-            get
-            {
-                return email;
-            }
-            set
-            {
-                email = value;
-            }
-        }
+        public string Title { get; set; }
 
-        public string Email2
-        {
-            get
-            {
-                return email2;
-            }
-            set
-            {
-                email2 = value;
-            }
-        }
+        public string Address { get; set; }
 
-        public string Email3
-        {
-            get
-            {
-                return email3;
-            }
-            set
-            {
-                email3 = value;
-            }
-        }
+        public string Home { get; set; }
 
-        public string Homepage
-        {
-            get
-            {
-                return homepage;
-            }
-            set
-            {
-                homepage = value;
-            }
-        }
+        public string Mobile { get; set; }
 
-        public string Address2
-        {
-            get
-            {
-                return address2;
-            }
-            set
-            {
-                address2 = value;
-            }
-        }
+        public string Work { get; set; }
 
-        public string Phone2
-        {
-            get
-            {
-                return phone2;
-            }
-            set
-            {
-                phone2 = value;
-            }
-        }
+        public string Fax { get; set; }
 
-        public string Notes
-        {
-            get
-            {
-                return notes;
-            }
-            set
-            {
-                notes = value;
-            }
-        }
+        public string Email { get; set; }
 
-        public string Byear
-        {
-            get
-            {
-                return byear;
-            }
-            set
-            {
-                byear = value;
-            }
-        }
+        public string Email2 { get; set; }
 
-        public string Ayear
-        {
-            get
-            {
-                return ayear;
-            }
-            set
-            {
-                ayear = value;
-            }
-        }
+        public string Email3 { get; set; }
+
+        public string Homepage { get; set; }
+
+        public string Address2 { get; set; }
+
+        public string Phone2 { get; set; }
+
+        public string Notes { get; set; }
+
+        public string Byear { get; set; }
+
+        public string Ayear { get; set; }
+
+        public string Id { get; set; }
     }
 }

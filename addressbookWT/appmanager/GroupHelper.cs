@@ -1,8 +1,12 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -13,8 +17,8 @@ namespace WebAddressbookTests
     {
 
         public By IsGroupPresent = By.ClassName("group");
-        public GroupHelper(ApplicationManager manager)   
-           : base(manager)                               
+        public GroupHelper(ApplicationManager manager)
+           : base(manager)
 
         {
         }
@@ -30,7 +34,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Modify(int p, GroupData newData)
+        public GroupHelper ModifyGroup(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
 
@@ -87,7 +91,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
 
@@ -105,9 +109,7 @@ namespace WebAddressbookTests
         }
 
         // 4.0
-        
         private List<GroupData> groupCache = null;
-    
 
         public List<GroupData> GetGroupList()
         {
@@ -118,7 +120,8 @@ namespace WebAddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCache.Add(new GroupData(element.Text) {
+                    groupCache.Add(new GroupData(element.Text)
+                    {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
 
@@ -131,7 +134,7 @@ namespace WebAddressbookTests
 
         public int GetGroupCount()
         {
-           return driver.FindElements(By.CssSelector("span.group")).Count;
+            return driver.FindElements(By.CssSelector("span.group")).Count;
         }
         //
     }

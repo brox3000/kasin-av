@@ -16,23 +16,26 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-           GroupData group = new GroupData("kasin");
-           group.Header = "T1";
-           group.Footer = "T2";
+            GroupData group = new GroupData("kasin");
+            group.Header = "T1";
+            group.Footer = "T2";
 
-            // 4.0
+            // S4.0
+
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
-            Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
+
             Assert.AreEqual(oldGroups, newGroups);
-            // 4.0 
+            // F4.0 
         }
 
         [Test]
@@ -51,6 +54,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -62,7 +66,7 @@ namespace WebAddressbookTests
 
         public void BadNameGroupCreationTest()
         {
-            GroupData group = new GroupData("a'a");
+            GroupData group = new GroupData("kasin_group");
             group.Header = "";
             group.Footer = "";
 
@@ -70,6 +74,7 @@ namespace WebAddressbookTests
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
+
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 

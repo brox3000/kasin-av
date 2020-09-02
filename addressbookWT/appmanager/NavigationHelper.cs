@@ -9,12 +9,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class HavigationHelper : HelperBase
+    public class NavigationHelper : HelperBase
     {
         private string baseURL;
 
-        public HavigationHelper(ApplicationManager manager, string baseURL) 
-            : base(manager)                                                 
+        public NavigationHelper(ApplicationManager manager, string baseURL)
+            : base(manager)
 
         {
             this.baseURL = baseURL;
@@ -31,8 +31,8 @@ namespace WebAddressbookTests
         }
 
         public void GoToGroupsPage()
-        { 
-            if (driver.Url == baseURL + "/addressbook/group.php" 
+        {
+            if (driver.Url == baseURL + "/addressbook/group.php"
                 && IsElementPresent(By.Name("new")))
             {
                 return;

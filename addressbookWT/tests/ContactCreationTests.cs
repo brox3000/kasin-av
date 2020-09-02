@@ -12,111 +12,47 @@ namespace WebAddressbookTests
     {
         [Test]
         public void ContactCreationTest()
-        {          
-            ContactGroup group = new ContactGroup("Aleksey", "Kasin");
-            group.MiddleName = "";
-            group.NickName = "";
-            group.Company = "";
-            group.Title = "";
-            group.Address = "";
-            group.Home = "";
-            group.Mobile = "";
-            group.Work = "";
-            group.Fax = "";
-            group.Email = "";
-            group.Email2 = "";
-            group.Email3 = "";
-            group.Homepage = "";
-            //group.Byear = "1990";
-            //group.Ayear = "2020";
-            //group.Bday = "2";
-            //group.Aday = "7";
-            //group.Bmonth = "March";
-            //group.Amonth = "May";
-            group.Address2 = "";
-            group.Phone2 = "";
-            group.Notes = "";
-
-
-            // 4.0
-            //List<ContactGroup> oldGroups = app.Groups.GetContactList();
-
-            app.Contact.Create(group); // Обращение на прямую к ContactHelper.cs
-
-            //List<ContactGroup> newGroups = app.Groups.GetContactList();
-            //oldGroups.Add(group);
-            //oldGroups.Sort();
-            //newGroups.Sort();
-            //Assert.AreEqual(oldGroups, newGroups);
-            //
-        }
-
-        [Test]
-        public void EmptyContactCreationTest()
         {
-            ContactGroup group = new ContactGroup("", "");
-            group.MiddleName = "";
-            group.NickName = "";
-            group.Company = "";
-            group.Title = "";
-            group.Address = "";
-            group.Home = "";
-            group.Mobile = "";
-            group.Work = "";
-            group.Fax = "";
-            group.Email = "";
-            group.Email2 = "";
-            group.Email3 = "";
-            group.Homepage = "";
-            //group.Byear = "";
-            //group.Ayear = "";
-            //group.Bday = "";
-            //group.Aday = "";
-            //group.Bmonth = "";
-            //group.Amonth = "";
-            group.Address2 = "";
-            group.Phone2 = "";
-            group.Notes = "";
+            ContactGroup contact = new ContactGroup("Aleksey", "Kasin");
+            contact.MiddleName = "";
+            contact.NickName = "";
+            contact.Company = "";
+            contact.Title = "";
+            contact.Address = "";
+            contact.Home = "";
+            contact.Mobile = "";
+            contact.Work = "";
+            contact.Fax = "";
+            contact.Email = "";
+            contact.Email2 = "";
+            contact.Email3 = "";
+            contact.Homepage = "";
+            //contact.Byear = "1990";
+            //contact.Ayear = "2020";
+            //contact.Bday = "2";
+            //contact.Aday = "7";
+            //contact.Bmonth = "March";
+            //contact.Amonth = "May";
+            contact.Address2 = "";
+            contact.Phone2 = "";
+            contact.Notes = "";
 
-            // 4.0
 
-            app.Contact.Create(group); // Обращение на прямую к ContactHelper.cs
+            // S4.0
+            List<ContactGroup> oldContact = app.Contact.GetContactList();
 
-           //
+            app.Contact.Create(contact); // Обращение на прямую к ContactHelper.cs
+
+            List<ContactGroup> newContact = app.Contact.GetContactList();
+
+            oldContact.Add(contact);
+            newContact.Sort();
+            oldContact.Sort();
+
+            Assert.AreEqual(oldContact, newContact);
+
+            // F4.0
         }
 
-        [Test]
-        public void BadNameContactCreationTest()
-        {
-            ContactGroup group = new ContactGroup("", "");
-            group.MiddleName = "";
-            group.NickName = "";
-            group.Company = "";
-            group.Title = "";
-            group.Address = "";
-            group.Home = "";
-            group.Mobile = "";
-            group.Work = "";
-            group.Fax = "";
-            group.Email = "";
-            group.Email2 = "";
-            group.Email3 = "";
-            group.Homepage = "";
-            //group.Byear = "";
-            //group.Ayear = "";
-            //group.Bday = "";
-            //group.Aday = "";
-            //group.Bmonth = "";
-            //group.Amonth = "";
-            group.Address2 = "";
-            group.Phone2 = "";
-            group.Notes = "";
-
-            // 4.0
-
-            app.Contact.Create(group); // Обращение на прямую к ContactHelper.cs
-
-            //
-        }
     }
 }

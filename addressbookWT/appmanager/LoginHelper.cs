@@ -9,11 +9,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-     public class LoginHelper : HelperBase
+    public class LoginHelper : HelperBase
     {
 
-        public LoginHelper(ApplicationManager manager) 
-             : base(manager)                            
+        public LoginHelper(ApplicationManager manager)
+             : base(manager)
         {
         }
 
@@ -37,7 +37,7 @@ namespace WebAddressbookTests
         {
             if (IsLoggedIn())
             {
-               driver.FindElement(By.LinkText("Logout")).Click();
+                driver.FindElement(By.LinkText("Logout")).Click();
             }
         }
 

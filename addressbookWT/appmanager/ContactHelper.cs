@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
+
     public class ContactHelper : HelperBase
     {
 
         public By IsContactPresent = By.Name("entry");
         // Конструктор
+
         public ContactHelper(ApplicationManager manager)
            : base(manager)
         {
+
         }
 
-        private bool acceptNextAlert;
 
+        // 3.0
         public ContactHelper Create(ContactGroup contact) // Метод называется с Большой Буквы
         {
             AddNewContact();
@@ -32,22 +33,8 @@ namespace WebAddressbookTests
             return this;
         }
 
-        // 4.0
-        //public List<ContactGroup> GetContactList()
-        //{
-        //    List<ContactGroup> groups = new List<ContactGroup>();
-        //    manager.Navigator.GoToGroupsPage();
-        //    ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-        //    foreach (IWebElement element in elements)
-        //    {
-        //        groups.Add(new ContactGroup(element.Text));
 
-        //    }
-        //    return groups;
-        //}
-        //
-
-        public ContactHelper Modify(int v, ContactGroup NewData)
+        public ContactHelper ModifyContact(int v, ContactGroup NewData)
         {
             SecectContact(v);
             InitContactModification();
@@ -86,46 +73,85 @@ namespace WebAddressbookTests
             Type(By.Name("lastname"), contact.LastName);
             Type(By.Name("nickname"), contact.NickName);
 
+
             // Company
+
+
             Type(By.Name("title"), contact.Title);
+
             Type(By.Name("company"), contact.Company);
+
             Type(By.Name("address"), contact.Address);
 
             // Telephone
             Type(By.Name("home"), contact.Home);
+
             Type(By.Name("mobile"), contact.Mobile);
+
             Type(By.Name("work"), contact.Work);
+
             Type(By.Name("fax"), contact.Fax);
 
             // Email
             Type(By.Name("email"), contact.Email);
+
             Type(By.Name("email2"), contact.Email2);
+
             Type(By.Name("email3"), contact.Email3);
 
             // Data 
+
             Type(By.Name("byear"), contact.Byear);
+
             Type(By.Name("ayear"), contact.Ayear);
 
             // Secondary
             Type(By.Name("homepage"), contact.Homepage);
             Type(By.Name("address2"), contact.Address2);
+
             Type(By.Name("phone2"), contact.Phone2);
+
             Type(By.Name("notes"), contact.Notes);
+
             return this;
         }
+
 
         public ContactHelper SubmitNewContact()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            ContactCach = null;
             return this;
         }
 
         // Удаление контакта
 
+
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            ContactCach = null;
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        public ContactHelper SelectContact()
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td/input")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
+        }
+
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
+            ContactCach = null;
             return this;
         }
 
@@ -136,38 +162,35 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
 
-        public ContactHelper InitContactModification()
-        {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            return this;
-        }
+        // 4.0
+        private List<ContactGroup> ContactCach = null;
+        private bool acceptNextAlert;
 
-        public ContactHelper SubmitContactModification()
+        internal List<ContactGroup> GetContactList()
         {
-            driver.FindElement(By.Name("update")).Click();
-            return this;
+            if (ContactCach == null)
+            {
+                ContactCach = new List<ContactGroup>();
+                manager.Navigator.GoToHomePage(); // Переход на нужную страницу
+
+                // Прочитать Список
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                foreach (IWebElement element in elements)
+                {
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    ContactCach.Add(new ContactGroup(cells[2].Text, cells[1].Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+
+                    });
+                }
+            }
+
+            return new List<ContactGroup>(ContactCach);
+
+
         }
+        //
     }
 }

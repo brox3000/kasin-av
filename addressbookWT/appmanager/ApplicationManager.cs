@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.UI;
+
 
 namespace WebAddressbookTests
 {
@@ -16,7 +19,7 @@ namespace WebAddressbookTests
         protected string baseURL;
 
         protected LoginHelper loginHelper;
-        protected HavigationHelper navigator;
+        protected NavigationHelper navigationHepler;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
@@ -26,9 +29,9 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
 
-            loginHelper = new LoginHelper(this);             
-            navigator = new HavigationHelper(this, baseURL); 
-            groupHelper = new GroupHelper(this);             
+            loginHelper = new LoginHelper(this);
+            navigationHepler = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
         }
 
@@ -46,55 +49,41 @@ namespace WebAddressbookTests
 
         public static ApplicationManager GetInstance()
         {
-            if (! app.IsValueCreated)
+
+            if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
+
                 newInstance.Navigator.GoToHomePage();
                 app.Value = newInstance;
-                
+
             }
             return app.Value;
         }
 
         public IWebDriver Driver
         {
-            get
-            {
-                return driver;
-            }
+            get { return driver; }
         }
 
         public LoginHelper Auth
         {
-            get
-            {
-                return loginHelper;
-            }
+            get { return loginHelper; }
         }
 
-        public HavigationHelper Navigator
+        public NavigationHelper Navigator
         {
-            get
-            {
-                return navigator;
-            }
+            get { return navigationHepler; }
         }
-
 
         public GroupHelper Groups
         {
-            get
-            {
-                return groupHelper;
-            }
+            get { return groupHelper; }
         }
 
         public ContactHelper Contact
         {
-            get
-            {
-                return contactHelper;
-            }
+            get { return contactHelper; }
         }
     }
 }
