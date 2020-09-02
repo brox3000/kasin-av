@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactGroup contact = new ContactGroup("Aleksey333", "Kasin333");
+            ContactGroup contact = new ContactGroup("Aleksey444", "Kasin444");
             contact.MiddleName = "";
             contact.NickName = "";
             contact.Company = "";

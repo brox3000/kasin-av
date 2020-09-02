@@ -54,8 +54,8 @@ namespace WebAddressbookTests
             {
                 if (contact.Id == oldData.Id)
                 {
-                    Assert.AreEqual(NewData.firstname, contact.firstname);
-                    Assert.AreEqual(NewData.lastname, contact.lastname);
+                    Assert.AreEqual(NewData.FirstName, contact.FirstName);
+                    Assert.AreEqual(NewData.LastName, contact.LastName);
                 }
             }
         }

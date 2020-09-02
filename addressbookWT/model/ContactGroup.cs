@@ -13,57 +13,57 @@ namespace WebAddressbookTests
 {
     public class ContactGroup : IEquatable<ContactGroup>, IComparable<ContactGroup>
     {
-        public string firstname;
-        public string lastname = "";
-        private string nickname = "";
-        private string middlename = "";
-        private string title = "";
-        private string company = "";
-        private string address = "";
-        private string home = "";
-        private string mobile = "";
-        private string work = "";
-        private string fax = "";
-        private string email = "";
-        private string email2 = "";
-        private string email3 = "";
-        private string homepage = "";
-        private string byear = "";
-        private string address2 = "";
-        private string phone2 = "";
-        private string notes = "";
-        private string ayear = "";
-        private string bday = "";
-        private string aday = "";
-        private string bmonth = "";
-        private string amonth = "";
+        //public string firstname;
+        //public string lastname = "";
+        //private string nickname = "";
+        //private string middlename = "";
+        //private string title = "";
+        //private string company = "";
+        //private string address = "";
+        //private string home = "";
+        //private string mobile = "";
+        //private string work = "";
+        //private string fax = "";
+        //private string email = "";
+        //private string email2 = "";
+        //private string email3 = "";
+        //private string homepage = "";
+        //private string byear = "";
+        //private string address2 = "";
+        //private string phone2 = "";
+        //private string notes = "";
+        //private string ayear = "";
+        //private string bday = "";
+        //private string aday = "";
+        //private string bmonth = "";
+        //private string amonth = "";
 
         public ContactGroup(string firstname, string lastname)
         {
-            this.firstname = firstname;
-            this.lastname = lastname;
+            FirstName = firstname;
+            LastName = lastname;
         }
 
         // S4.0
         public bool Equals(ContactGroup other)
         {
 
-            if (Object.ReferenceEquals(other.lastname, null) && (Object.ReferenceEquals(other.firstname, null)))
+            if (Object.ReferenceEquals(other.LastName, null) && (Object.ReferenceEquals(other.FirstName, null)))
             {
                 return false;
             }
 
-            return lastname == other.lastname && firstname == other.firstname;
+            return LastName == other.LastName && FirstName == other.FirstName;
 
         }
         public override int GetHashCode()
         {
-            return lastname.GetHashCode();
+            return LastName.GetHashCode();
         }
 
         public override string ToString()
         {
-            return lastname;
+            return LastName;
         }
 
         public int CompareTo(ContactGroup other)
@@ -75,13 +75,13 @@ namespace WebAddressbookTests
             }
 
 
-            if ((lastname.CompareTo(other.lastname)) == 0)
+            if ((LastName.CompareTo(other.LastName)) == 0)
 
             {
-                return firstname.CompareTo(other.firstname);
+                return FirstName.CompareTo(other.FirstName);
             }
 
-            return (lastname.CompareTo(other.lastname));
+            return (LastName.CompareTo(other.LastName));
 
         }
         // F4.0

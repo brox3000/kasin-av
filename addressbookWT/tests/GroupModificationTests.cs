@@ -30,9 +30,24 @@ namespace WebAddressbookTests
 
             List<GroupData> OldGroups = app.Groups.GetGroupList();
 
+
+            //var index = 0;
+
+            //for (int i = 0; i < OldGroups.Count; i++)
+            //{
+            //    if (OldGroups[i].Name == "kasin_test1")
+            //    {
+            //        index = i;
+            //        break;
+            //    }
+            //}
+
             GroupData oldData = OldGroups[0];
 
-            app.Groups.ModifyGroup(1, newData);
+            app.Groups.ModifyGroup(0, newData);
+
+
+
        
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
@@ -40,7 +55,11 @@ namespace WebAddressbookTests
             OldGroups.Sort();
             newGroups.Sort();
 
+
             Assert.AreEqual(OldGroups, newGroups);
+
+
+
 
             foreach (GroupData group in newGroups)
             {

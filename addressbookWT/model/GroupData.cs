@@ -22,10 +22,12 @@ namespace WebAddressbookTests
             {
                 return false;
             }
+
             if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
+
             return Name == other.Name;
         }
 
@@ -45,6 +47,7 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
+
             return Name.CompareTo(other.Name);
         }
         //
