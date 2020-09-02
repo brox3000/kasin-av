@@ -40,12 +40,24 @@ namespace WebAddressbookTests
             app.Contact.ModifyContact(1, NewData);
 
             List<ContactGroup> newContact = app.Contact.GetContactList();
+
+            ContactGroup oldData = oldContact[0];
+
             oldContact[0].FirstName = NewData.FirstName;
             oldContact[0].LastName = NewData.LastName;
 
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);
+
+            foreach (ContactGroup contact in newContact)
+            {
+                if (contact.Id == oldData.Id)
+                {
+                    Assert.AreEqual(NewData.firstname, contact.firstname);
+                    Assert.AreEqual(NewData.lastname, contact.lastname);
+                }
+            }
         }
     }
 }

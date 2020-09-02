@@ -13,8 +13,8 @@ namespace WebAddressbookTests
 {
     public class ContactGroup : IEquatable<ContactGroup>, IComparable<ContactGroup>
     {
-        private string firstname;
-        private string lastname = "";
+        public string firstname;
+        public string lastname = "";
         private string nickname = "";
         private string middlename = "";
         private string title = "";

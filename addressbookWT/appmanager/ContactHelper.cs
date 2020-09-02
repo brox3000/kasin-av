@@ -191,6 +191,11 @@ namespace WebAddressbookTests
 
 
         }
+        // ------------------------
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.Name("entry")).Count;
+        }
         //
     }
 }

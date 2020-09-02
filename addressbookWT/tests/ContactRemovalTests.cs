@@ -39,9 +39,17 @@ namespace WebAddressbookTests
 
             List<ContactGroup> newContact = app.Contact.GetContactList();
 
+            ContactGroup Removed = oldContact[0];
+
             oldContact.RemoveAt(0);
 
+
             Assert.AreEqual(oldContact, newContact);
+
+            foreach (ContactGroup contact in newContact)
+            {
+                Assert.AreNotEqual(contact.Id, Removed.Id);
+            }
 
         }
     }
