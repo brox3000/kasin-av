@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props" Condition="Exists('..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -75,9 +76,7 @@
     <Compile Include="model\AccountData.cs" />
     <Compile Include="tests\ContactCreationTests.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
-    <Compile Include="delete\Circle.cs" />
     <Compile Include="model\ContactGroup.cs" />
-    <Compile Include="delete\Figure.cs" />
     <Compile Include="model\GroupData.cs" />
     <Compile Include="appmanager\GroupHelper.cs" />
     <Compile Include="tests\GroupRemovalTests.cs" />
@@ -86,15 +85,13 @@
     <Compile Include="appmanager\LoginHelper.cs" />
     <Compile Include="tests\LoginTests.cs" />
     <Compile Include="tests\TestBase.cs" />
-    <Compile Include="delete\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tests\GroupCreationTests.cs" />
-    <Compile Include="delete\Square.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram\ClassDiagram1.cd" />
     <None Include="diagram\ClassDiagram3.cd" />
-    <None Include="delete\packages.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
@@ -117,6 +114,12 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
