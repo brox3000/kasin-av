@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
@@ -13,7 +14,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactGroup contact = new ContactGroup("Aleksey", "Kasin");
+            ContactGroup contact = new ContactGroup("Aleksey333", "Kasin333");
             contact.MiddleName = "";
             contact.NickName = "";
             contact.Company = "";
@@ -53,6 +54,6 @@ namespace WebAddressbookTests
 
             // F4.0
         }
-
+            
     }
 }

@@ -158,14 +158,14 @@ namespace WebAddressbookTests
         public ContactHelper SecectContact(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            acceptNextAlert = true;
+            //acceptNextAlert = true;
             return this;
         }
 
 
         // 4.0
         private List<ContactGroup> ContactCach = null;
-        private bool acceptNextAlert;
+        //private bool acceptNextAlert;
 
         internal List<ContactGroup> GetContactList()
         {

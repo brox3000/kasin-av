@@ -43,8 +43,8 @@ namespace WebAddressbookTests
             this.firstname = firstname;
             this.lastname = lastname;
         }
-		
-		// S4.0
+
+        // S4.0
         public bool Equals(ContactGroup other)
         {
 
@@ -54,38 +54,38 @@ namespace WebAddressbookTests
             }
 
             return lastname == other.lastname && firstname == other.firstname;
- 
+
         }
         public override int GetHashCode()
         {
-          return lastname.GetHashCode();
+            return lastname.GetHashCode();
         }
 
         public override string ToString()
         {
-           return lastname;
+            return lastname;
         }
 
         public int CompareTo(ContactGroup other)
         {
-          if (object.ReferenceEquals(other, null))
+            if (object.ReferenceEquals(other, null))
 
-           {
+            {
                 return 1;
-           }
+            }
 
-        
-         if ((lastname.CompareTo(other.lastname)) == 0)
 
-          {
-              return firstname.CompareTo(other.firstname);
-          }
+            if ((lastname.CompareTo(other.lastname)) == 0)
+
+            {
+                return firstname.CompareTo(other.firstname);
+            }
 
             return (lastname.CompareTo(other.lastname));
 
         }
-		// F4.0
-		
+        // F4.0
+
         public string Amonth { get; set; }
 
         public string Bmonth { get; set; }
