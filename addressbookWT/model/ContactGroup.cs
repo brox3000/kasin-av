@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
 
 
 
@@ -13,30 +14,8 @@ namespace WebAddressbookTests
 {
     public class ContactGroup : IEquatable<ContactGroup>, IComparable<ContactGroup>
     {
-        //public string firstname;
-        //public string lastname = "";
-        //private string nickname = "";
-        //private string middlename = "";
-        //private string title = "";
-        //private string company = "";
-        //private string address = "";
-        //private string home = "";
-        //private string mobile = "";
-        //private string work = "";
-        //private string fax = "";
-        //private string email = "";
-        //private string email2 = "";
-        //private string email3 = "";
-        //private string homepage = "";
-        //private string byear = "";
-        //private string address2 = "";
-        //private string phone2 = "";
-        //private string notes = "";
-        //private string ayear = "";
-        //private string bday = "";
-        //private string aday = "";
-        //private string bmonth = "";
-        //private string amonth = "";
+        private string allPhones;
+        private string allEmails;
 
         public ContactGroup(string firstname, string lastname)
         {
@@ -53,7 +32,8 @@ namespace WebAddressbookTests
                 return false;
             }
 
-            return LastName == other.LastName && FirstName == other.FirstName;
+            return LastName == other.LastName 
+                && FirstName == other.FirstName;
 
         }
         public override int GetHashCode()
@@ -95,6 +75,82 @@ namespace WebAddressbookTests
         public string Bday { get; set; }
 
         public string FirstName { get; set; }
+
+        public string SecondName { get; set; }
+
+
+        // Phone 5.0
+        public string AllPhones
+
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(Home) + CleanUp(Mobile) + CleanUp(Work)).Trim();
+                }
+
+            }
+
+            set
+            {
+                allPhones = value;
+            }
+        }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return Regex.Replace(phone,"([-()])", "") + "\r\n";
+            //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
+        // Phones The End
+
+
+        // Email 5.0
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    return (CleanUpEmails(Email) + CleanUpEmails(Email2) + CleanUpEmails(Email3)).Trim();
+                }
+
+            }
+
+
+            set
+            {
+                allEmails = value;
+            }
+        }
+    
+
+        private string CleanUpEmails(string emailc)
+        {
+            if (emailc == null || emailc == "")
+            {
+                return "";
+            }
+            else
+            {
+                return emailc.Replace(" ", "") + "\r\n";
+            }
+
+        }
+        // Email The End 5.0
 
         public string LastName { get; set; }
 
