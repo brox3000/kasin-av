@@ -16,6 +16,7 @@ namespace WebAddressbookTests
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
             List<GroupData> groups = new List<GroupData>();
+
             for (int i = 0; i < 5; i++)
             {
                 groups.Add(new GroupData(GenerateRandomString(30))
@@ -24,6 +25,7 @@ namespace WebAddressbookTests
                     Footer = GenerateRandomString(100)
                 });
             }
+
             return groups;
         }
         // The End 5.5
@@ -33,18 +35,18 @@ namespace WebAddressbookTests
         {
             // S4.0
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-
+            //Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
 
+            
             Assert.AreEqual(oldGroups, newGroups);
             // F4.0 
         }
@@ -63,7 +65,8 @@ namespace WebAddressbookTests
             app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
 
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
+            //Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);

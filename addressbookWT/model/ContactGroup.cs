@@ -32,7 +32,7 @@ namespace WebAddressbookTests
                 return false;
             }
 
-            return LastName == other.LastName 
+            return LastName == other.LastName
                 && FirstName == other.FirstName;
 
         }
@@ -43,41 +43,32 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return LastName;
+            return ("lastname=" + LastName + "\nfirstname=" + FirstName + "\naddress=" + Address);
+            //return LastName;
         }
 
         public int CompareTo(ContactGroup other)
         {
             if (object.ReferenceEquals(other, null))
-
             {
                 return 1;
             }
-
-
             if ((LastName.CompareTo(other.LastName)) == 0)
-
             {
                 return FirstName.CompareTo(other.FirstName);
             }
 
             return (LastName.CompareTo(other.LastName));
-
         }
         // F4.0
 
         public string Amonth { get; set; }
-
         public string Bmonth { get; set; }
-
         public string Aday { get; set; }
-
         public string Bday { get; set; }
-
         public string FirstName { get; set; }
-
         public string SecondName { get; set; }
-
+        //
 
         // Phone 5.0
         public string AllPhones
@@ -102,16 +93,19 @@ namespace WebAddressbookTests
             }
         }
 
+
+
         private string CleanUp(string phone)
         {
             if (phone == null || phone == "")
             {
                 return "";
             }
-            return Regex.Replace(phone,"([-()])", "") + "\r\n";
+            return Regex.Replace(phone, "([-()])", "") + "\r\n";
             //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
         }
         // Phones The End
+
 
 
         // Email 5.0
@@ -136,60 +130,40 @@ namespace WebAddressbookTests
                 allEmails = value;
             }
         }
-    
 
-        private string CleanUpEmails(string emailc)
+
+        private string CleanUpEmails(string emailup)
         {
-            if (emailc == null || emailc == "")
+            if (emailup == null || emailup == "")
             {
                 return "";
             }
             else
             {
-                return emailc.Replace(" ", "") + "\r\n";
+                return emailup.Replace(" ", "") + "\r\n";
             }
 
         }
         // Email The End 5.0
-
         public string LastName { get; set; }
-
         public string NickName { get; set; }
-
         public string MiddleName { get; set; }
-
         public string Company { get; set; }
-
         public string Title { get; set; }
-
         public string Address { get; set; }
-
         public string Home { get; set; }
-
         public string Mobile { get; set; }
-
         public string Work { get; set; }
-
         public string Fax { get; set; }
-
         public string Email { get; set; }
-
         public string Email2 { get; set; }
-
         public string Email3 { get; set; }
-
         public string Homepage { get; set; }
-
         public string Address2 { get; set; }
-
         public string Phone2 { get; set; }
-
         public string Notes { get; set; }
-
         public string Byear { get; set; }
-
         public string Ayear { get; set; }
-
         public string Id { get; set; }
     }
 }

@@ -49,7 +49,7 @@ namespace WebAddressbookTests
         public bool IsLoggedIn(AccountData account)
         {
             return IsLoggedIn()
-                &&GetLoggetUserName() == account.Username;
+                && GetLoggetUserName() == account.Username;
         }
 
         public string GetLoggetUserName()

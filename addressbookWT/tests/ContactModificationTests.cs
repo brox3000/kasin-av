@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Threading.Tasks;
 using OpenQA.Selenium;
-
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
@@ -13,7 +14,6 @@ namespace WebAddressbookTests
 
     public class ContactModificationTests : AuthTestBase
     {
-
         [Test]
         public void ContactModificationTest()
         {
@@ -24,6 +24,7 @@ namespace WebAddressbookTests
                 contact.Mobile = "+7(800)97531";
                 contact.Email = "new_mail@mail.ru";
                 contact.Address = "new_Moscow";
+
 
                 app.Contact.Create(contact);
 
@@ -39,13 +40,16 @@ namespace WebAddressbookTests
 
             app.Contact.ModifyContact(1, NewData);
 
+
+
             List<ContactGroup> newContact = app.Contact.GetContactList();
 
             ContactGroup oldData = oldContact[0];
 
+
+
             oldContact[0].FirstName = NewData.FirstName;
             oldContact[0].LastName = NewData.LastName;
-
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);

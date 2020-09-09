@@ -140,7 +140,7 @@ namespace WebAddressbookTests
                     {
                         groupCache[i].Name = parts[i - shift].Trim();
                     }
-                 }
+                }
             }
 
             return new List<GroupData>(groupCache);

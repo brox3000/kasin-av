@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
@@ -24,6 +26,14 @@ namespace WebAddressbookTests
         public static string GenerateRandomString(int max)
         {
             //Генератор случайных чисел
+            //var s = "qwertyuiopasdfghjklzxcvbnm";
+            //var r = "";
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    r += s[rnd.Next(s.Length)];
+            //}
+
+            //return r;
 
             int l = Convert.ToInt32(rnd.NextDouble() * max);
             StringBuilder builder = new StringBuilder();

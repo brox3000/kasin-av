@@ -6,44 +6,33 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace WebAddressbookTests
 {
     [TestFixture]
     public class ContactCreationTests : AuthTestBase
     {
-        [Test]
-        public void ContactCreationTest()
+        // S4.0 - 5.0
+        public static IEnumerable<ContactGroup> RandomContactDataProvider()
         {
-            ContactGroup contact = new ContactGroup("Aleksey444", "Kasin444");
-            contact.MiddleName = "";
-            contact.NickName = "";
-            contact.Company = "";
-            contact.Title = "";
-            contact.Address = "";
-            contact.Home = "";
-            contact.Mobile = "";
-            contact.Work = "";
-            contact.Fax = "";
-            contact.Email = "";
-            contact.Email2 = "";
-            contact.Email3 = "";
-            contact.Homepage = "";
-            //contact.Byear = "1990";
-            //contact.Ayear = "2020";
-            //contact.Bday = "2";
-            //contact.Aday = "7";
-            //contact.Bmonth = "March";
-            //contact.Amonth = "May";
-            contact.Address2 = "";
-            contact.Phone2 = "";
-            contact.Notes = "";
+            List<ContactGroup> oldContact = new List<ContactGroup>();
+            for (int i = 0; i < 5; i++)
+            {
+                oldContact.Add(new ContactGroup(GenerateRandomString(20), GenerateRandomString(20))
+                {
+                    Address = GenerateRandomString(100)
+                }
+            );
+            }
+            return oldContact;
+        }
 
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void CreateNewContact(ContactGroup contact)
+        {
 
-            // S4.0
             List<ContactGroup> oldContact = app.Contact.GetContactList();
-
-            app.Contact.Create(contact); // Обращение на прямую к ContactHelper.cs
-
+            app.Contact.Create(contact);
             List<ContactGroup> newContact = app.Contact.GetContactList();
 
             oldContact.Add(contact);
@@ -51,9 +40,7 @@ namespace WebAddressbookTests
             oldContact.Sort();
 
             Assert.AreEqual(oldContact, newContact);
-
-            // F4.0
+         // F4.0-5.0
         }
-            
     }
 }
