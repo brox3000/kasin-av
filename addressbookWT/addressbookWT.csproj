@@ -93,6 +93,9 @@
   <ItemGroup>
     <None Include="diagram\ClassDiagram1.cd" />
     <None Include="diagram\ClassDiagram3.cd" />
+    <None Include="groups.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

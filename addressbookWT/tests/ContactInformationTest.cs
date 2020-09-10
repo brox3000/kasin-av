@@ -37,7 +37,7 @@ namespace WebAddressbookTests
 
 
 
-            // Firstname? FirstName? Lastname & LastName?
+
             if (fromEditPage.FirstName != "" && fromEditPage.LastName != "")
             {
                 FLName = Convert.ToString(fromEditPage.FirstName + " " + fromEditPage.LastName).Trim();
