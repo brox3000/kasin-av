@@ -46,7 +46,12 @@ namespace WebAddressbookTests
 
                 contact.Add(new ContactGroup(parts[0], parts[1])
                 {
-                    Address = parts[2]
+                    Address = parts[2],
+                    Mobile = parts[4],
+                    Work = parts[5],
+                    Email = parts[6],
+                    Email2 = parts[7],
+                    Email3 = parts[8]
                 });
 
             }
@@ -56,8 +61,6 @@ namespace WebAddressbookTests
         // XML
         public static IEnumerable<ContactGroup> ContactDataFromXmlFile()
         {
-            List<ContactGroup> contact = new List<ContactGroup>();
-
             return (List<ContactGroup>)new XmlSerializer(typeof(List<ContactGroup>))
                 .Deserialize(new StreamReader("contacts.xml"));
         }
@@ -71,14 +74,13 @@ namespace WebAddressbookTests
               );
         }
 
-        [Test, TestCaseSource("ContactDataFromCsvFile")]
+        [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void CreateNewContact(ContactGroup contact)
         {
 
-            List<ContactGroup> oldContact = app.Contact.GetContactList();
+            List<ContactGroup> oldContact = ContactGroup.GetAll();
             app.Contact.Create(contact);
-            List<ContactGroup> newContact = app.Contact.GetContactList();
-
+            List<ContactGroup> newContact = ContactGroup.GetAll();
             oldContact.Add(contact);
 
             newContact.Sort();

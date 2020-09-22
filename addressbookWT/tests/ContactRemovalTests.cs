@@ -33,13 +33,19 @@ namespace WebAddressbookTests
 
             app.Navigator.GoToHomePage();
 
-            List<ContactGroup> oldContact = app.Contact.GetContactList();
+            List<ContactGroup> oldContact = ContactGroup.GetAll();
 
-            app.Contact.Remove(1);
+            //7.0 toBeRemoved
+            ContactGroup toBeRemoved = oldContact[0];
 
-            List<ContactGroup> newContact = app.Contact.GetContactList();
 
-            ContactGroup Removed = oldContact[0];
+            
+            app.Contact.Remove(toBeRemoved);
+            app.Navigator.GoToHomePage();
+
+            List<ContactGroup> newContact = ContactGroup.GetAll();
+
+            //ContactGroup Removed = oldContact[0];
 
             oldContact.RemoveAt(0);
 
@@ -48,7 +54,7 @@ namespace WebAddressbookTests
 
             foreach (ContactGroup contact in newContact)
             {
-                Assert.AreNotEqual(contact.Id, Removed.Id);
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
             }
 
         }

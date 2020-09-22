@@ -31,32 +31,34 @@ namespace WebAddressbookTests
             }
             app.Navigator.GoToHomePage();
 
-            ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin_edit3");
+            ContactGroup NewData = new ContactGroup("Aleksey_edit3", "Kasin");
             NewData.Mobile = "+7(800)13";
             NewData.Email = "mail3@mail.ru";
             NewData.Address = "Moscow3";
 
-            List<ContactGroup> oldContact = app.Contact.GetContactList();
+            List<ContactGroup> oldContact = ContactGroup.GetAll();
 
-            app.Contact.ModifyContact(1, NewData);
+            var index = 0;
+            //7.0 * toBeChanged
+            ContactGroup toBeChanged = oldContact[index];
+            //
+            app.Contact.ModifyContact(index+1, NewData);
+
+            List<ContactGroup> newContact = ContactGroup.GetAll();
+
+            //ContactGroup oldData = oldContact[0];
 
 
 
-            List<ContactGroup> newContact = app.Contact.GetContactList();
-
-            ContactGroup oldData = oldContact[0];
-
-
-
-            oldContact[0].FirstName = NewData.FirstName;
-            oldContact[0].LastName = NewData.LastName;
+            oldContact[index].FirstName = NewData.FirstName;
+            oldContact[index].LastName = NewData.LastName;
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);
 
             foreach (ContactGroup contact in newContact)
             {
-                if (contact.Id == oldData.Id)
+                if (contact.Id == toBeChanged.Id)
                 {
                     Assert.AreEqual(NewData.FirstName, contact.FirstName);
                     Assert.AreEqual(NewData.LastName, contact.LastName);

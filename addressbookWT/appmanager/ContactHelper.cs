@@ -145,6 +145,27 @@ namespace WebAddressbookTests
             return this;
         }
 
+        internal object Remove(ContactGroup contact)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContact(contact.Id);
+            RemoveContact();
+            return this;
+        }
+
+        //7.4
+        public ContactHelper AddChanges(ContactGroup contact, ContactGroup NewData)
+        {
+
+            manager.Navigator.GoToHomePage();
+            SelectContact(contact.Id);
+            InitContactModification(0);
+            NewContact(NewData);         // Заполняем форму
+            SubmitContactModification();
+            return this;
+        }
+        //
+
         public ContactHelper Remove(int v)
         {
             SecectContact(v);
@@ -213,13 +234,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-        // Удаление контакта
-
-        public ContactHelper SelectContact()
-        {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td/input")).Click();
-            return this;
-        }
 
 
         public ContactHelper RemoveContact()
@@ -261,6 +275,9 @@ namespace WebAddressbookTests
 
         // 4.0
         private List<ContactGroup> ContactCach = null;
+        //7.4
+        private string id;
+
         //private bool acceptNextAlert;
 
         internal List<ContactGroup> GetContactList()
@@ -288,15 +305,6 @@ namespace WebAddressbookTests
 
         }
 
-
-        // 5.0 &  ? Конфликт
-        //public void InitContactModification(int index)
-        //{
-        //    driver.FindElements(By.Name("entry"))[index]
-        //    .FindElements(By.TagName("td"))[7]
-        //    .FindElement(By.TagName("a")).Click();
-        //}
-
         public int GetContactCount()
         {
             return driver.FindElements(By.Name("entry")).Count;
@@ -308,6 +316,76 @@ namespace WebAddressbookTests
             string text = driver.FindElement(By.TagName("label")).Text;
             Match m = new Regex(@"\d+").Match(text);
             return Int32.Parse(m.Value);
+        }  //
+
+
+
+        // 7.4
+        //Дубль
+        public void RemoveContactFromGroup(ContactGroup contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectGroupInFilter(group.Name);
+            SelectContact(contact.Id);
+            RemoveContactFromGroupa();
         }
-    }      //
+
+        private void SelectGroupInFilter(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
+        }
+
+
+        private void RemoveContactFromGroupa()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+            //driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            //driver.SwitchTo().Alert().Accept();
+            //driver.FindElement(By.CssSelector("div.msgbox"));
+
+        }
+        public void AddContactToGroup(ContactGroup contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddingContactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public void CommitAddingContactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+
+        }
+
+        public void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+
+        }
+
+        // 7.4 11:53    
+        public ContactHelper SelectContact(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            return this;
+        }
+
+
+        public ContactHelper SelectContact()
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td/input")).Click();
+            return this;
+        }
+        //
+
+    }
 }

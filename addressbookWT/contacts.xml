@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfGroupData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <GroupData>
-    <Name>NM;?2P</Name>
-    <Header>E3UTX-</Header>
-    <Footer />
-  </GroupData>
-  <GroupData>
-    <Name>?+-.</Name>
-    <Header>:]682*5#&lt;</Header>
-    <Footer>/N;U\7</Footer>
-  </GroupData>
-</ArrayOfGroupData>
+<ArrayOfContactGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContactGroup>
+    <FirstName>gdgdfgdgd</FirstName>
+    <LastName>dfgdfg</LastName>
+    <Address>fghfghRCWU</Address>
+    <allPhones />
+    <allEmails />
+  </ContactGroup>
+  <ContactGroup>
+    <FirstName>ftg6</FirstName>
+    <LastName>dfgdfg</LastName>
+    <Address />
+    <allPhones />
+    <allEmails />
+  </ContactGroup>
+</ArrayOfContactGroup>

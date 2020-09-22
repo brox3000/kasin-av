@@ -16,7 +16,7 @@ namespace WebAddressbookTests
 {
     [TestFixture]
 
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
         // 5.5
         public static IEnumerable<GroupData> RandomGroupDataProvider()
@@ -39,7 +39,7 @@ namespace WebAddressbookTests
         // 6.0
         public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
-            List<GroupData> groups = new List<GroupData>();//создаем список
+            List<GroupData> groups = new List<GroupData>(); 
             string[] lines = File.ReadAllLines(@"groups.csv");
             foreach (string l in lines)
             {
@@ -56,6 +56,7 @@ namespace WebAddressbookTests
         // XML
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
+            List<GroupData> groups = new List<GroupData>(); 
             return (List<GroupData>)
                 new XmlSerializer(typeof(List<GroupData>))
                 .Deserialize(new StreamReader(@"groups.xml"));
@@ -99,13 +100,13 @@ namespace WebAddressbookTests
         public void GroupCreationTest(GroupData group)
         {
             // S4.0
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             app.Groups.Create(group);  // Обращение на прямую к GroupHelper.cs
 
             //Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
 
             oldGroups.Add(group);
             oldGroups.Sort();
@@ -142,19 +143,31 @@ namespace WebAddressbookTests
             //
         }
 
-        // !!!Вывести на Консоль...
         [Test]
         public void TestDBConnectivity()
         {
-            DateTime start = DateTime.Now;
-            List<GroupData> fromUi = app.Groups.GetGroupList();
-            DateTime end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
 
-            start = DateTime.Now;
-            List<GroupData> fromDb = GroupData.GetAll();
-            end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
+            foreach (ContactGroup contact in GroupData.GetAll()[0].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact);
+            }
+
+            //7.0
+            //DateTime start = DateTime.Now;
+            //List<GroupData> fromUi = app.Groups.GetGroupList();
+            //DateTime end = DateTime.Now;
+            //System.Console.Out.WriteLine(end.Subtract(start));
+
+            //start = DateTime.Now;
+            //List<GroupData> fromDb = GroupData.GetAll();
+            //end = DateTime.Now;
+            //System.Console.Out.WriteLine(end.Subtract(start));
+
+            //foreach (ContactGroup contact in GroupData.GetAll()[0].GetContacts()) {
+
+            //foreach (ContactGroup contact in ContactGroup.GetAll()) {
+            //    System.Console.Out.WriteLine(contact.Deprecated);
+            //}
         }
     }
 }

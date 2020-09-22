@@ -13,7 +13,7 @@ namespace WebAddressbookTests
 
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupTestBase
     {
         [Test]
         public void GroupModificationTest()
@@ -34,8 +34,9 @@ namespace WebAddressbookTests
             newData.Header = "kasin_modif2";
             newData.Footer = "kasin_modif3";
 
-            List<GroupData> OldGroups = app.Groups.GetGroupList();
+            List<GroupData> OldGroups = GroupData.GetAll();
 
+            GroupData toBeChanged = OldGroups[0];
 
             //var index = 0;
 
@@ -48,14 +49,16 @@ namespace WebAddressbookTests
             //    }
             //}
 
-            GroupData oldData = OldGroups[0];
+            //GroupData oldData = OldGroups[0];
+            //app.Groups.ModifyGroup(0, newData);
 
-            app.Groups.ModifyGroup(0, newData);
+            // 7.0 AddChanges
+            app.Groups.AddChanges(toBeChanged, newData);
 
 
 
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
 
             OldGroups[0].Name = newData.Name;
             OldGroups.Sort();
@@ -69,7 +72,7 @@ namespace WebAddressbookTests
 
             foreach (GroupData group in newGroups)
             {
-                if (group.Id == oldData.Id)
+                if (group.Id == toBeChanged.Id)
                 {
                     Assert.AreEqual(newData.Name, group.Name);
                 }
