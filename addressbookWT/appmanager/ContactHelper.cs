@@ -375,6 +375,8 @@ namespace WebAddressbookTests
         // 7.4 11:53    
         public ContactHelper SelectContact(String id)
         {
+            // loc
+            By loc = By.XPath("(//input[@name='selected[]' and @value='" + id + "'])");
             driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
             return this;
         }

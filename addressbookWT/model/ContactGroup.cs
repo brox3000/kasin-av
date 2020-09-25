@@ -33,13 +33,21 @@ namespace WebAddressbookTests
         public bool Equals(ContactGroup other)
         {
 
-            if (Object.ReferenceEquals(other.LastName, null) && (Object.ReferenceEquals(other.FirstName, null)))
+            if (Object.ReferenceEquals(other.LastName, null) 
+                && (Object.ReferenceEquals(other.FirstName, null) 
+                && Object.ReferenceEquals(other.Id, null)))
             {
                 return false;
             }
 
-            return LastName == other.LastName
-                && FirstName == other.FirstName;
+            if (Object.ReferenceEquals(this, other.LastName) 
+                && (Object.ReferenceEquals(this, other.FirstName) 
+                && (Object.ReferenceEquals(this, other.Id))))
+            {
+                return true;
+            }
+
+            return LastName == other.LastName && FirstName == other.FirstName && Id == other.Id;
 
         }
         // F4.0
@@ -100,8 +108,10 @@ namespace WebAddressbookTests
 
         [Column(Name = "home")]
         public string Home { get; set; }
+
         [Column(Name = "mobile")]
         public string Mobile { get; set; }
+
         [Column(Name = "work")]
         public string Work { get; set; }
 
@@ -244,8 +254,8 @@ namespace WebAddressbookTests
         {
             using (AddressBookDB db = new AddressBookDB())
             {
-                return (from g in db.Groups from gcr in db.GCR.Where(P => P.GroupId == Id && P.ContactId == g.Id) select g).ToList();
-
+                return (from g in db.Groups from gcr in db.GCR.Where(p => p.GroupId == g.Id && p.ContactId == Id
+                        && g.Deprecated == "0000-00-00 00:00:00") select g).Distinct().ToList();
             }
         }
     }
